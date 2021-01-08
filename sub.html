@@ -3,25 +3,227 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Project2_sub1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/styles.css" rel="stylesheet" type="text/css" />
+    
     <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/slick.css">
+    <link rel="stylesheet" type="text/css" href="css/slick-theme.css">
+
+
+<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.otherbutton').append('<span class="hover"></span>').each(function () {
+	  		var $span = $('> span.hover', this).css('opacity', 0);
+	  		$(this).hover(function () {
+	    		$span.stop().fadeTo(500, 1);
+	 		}, function () {
+	   	$span.stop().fadeTo(500, 0);
+	  		});
+		});
+	});
+</script>
+    
+    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+    <script>
+        $(document).ready(function() {
+            mobile_menu();
+        });
+
+        function mobile_menu() {
+            /* 변수 선언 */
+            var $menu = null;
+            var $left_gnb = null; // 영역 전체
+            var $depth1_wrap = null;
+            var $depth1 = null;
+            var $depth1_btn = null;
+
+            /* 시작 함수 */
+            function start() {
+                init();
+                init_event();
+            }
+            /* 변수 초기화 함수 */
+            function init() {
+                $menu = $('.m_ham');
+                $left_gnb = $('.left_gnbWrap'); // 영역 전체
+                $depth1_wrap = $('.left_gnb>li');
+                $depth1 = $depth1_wrap.children('ul');
+                $depth1_btn = $depth1_wrap.children('a');
+            }
+            /* 이벤트 함수 */
+            function init_event() {
+
+                /* 모바일 메뉴 버튼 클릭했을때 모바일 메뉴영역 나오게 하기 */
+                $menu.click(function(event) {
+                    event.preventDefault();
+                    $left_gnb.addClass('on');
+                });
+
+                /* x버튼 눌렀을때 모바일 메뉴 닫기 */
+                $('.close').click(function(event) {
+                    event.preventDefault();
+
+                    $left_gnb.removeClass('on');
+
+                    // x버튼 누르면 시간차 약간두고 소메뉴 닫히게 하기
+                    setTimeout(function() {
+                        $depth1_btn.removeClass('on');
+                        $depth1.slideUp();
+                    }, 300)
+                });
+
+                /* depth1의 각메뉴 클릭시 depth2 나오게 하기 */
+                $depth1_btn.click(function(event) {
+                    event.preventDefault();
+                    var $this = $(this);
+                    var $this_ul = $this.siblings('ul');
+
+                    var check = $this.hasClass('on');
+                    if (check) {
+                        $this.removeClass('on');
+                        $this_ul.stop(true, true).slideUp();
+                    } else {
+                        $depth1_btn.removeClass('on');
+                        $depth1.stop().slideUp();
+                        $this.addClass('on');
+                        $this_ul.stop(true, true).slideDown();
+                    }
+                });
+
+                /* 디바이스 크기 변경시 모바일 메뉴영역 숨기기 */
+                $(window).resize(function() {
+                    $left_gnb.removeClass('on');
+                });
+            }
+
+            start(); // 시작 호출
+        }
+
+    </script>
+
+    <script src="js/flickerplate.min.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            $('.flicker-example').flicker();
+        });
+
+    </script>
+
+
+
 </head>
 
-<body>
-    <div class="wrap sub-wrap">
+<body class="sub_body">
+    <div class="wrap">
         <header id="header">
-            <ul>
-                <li class="login"><i><img src="img/login.png"></i></li>
-                <ul class="m_left">
-                    <li>부산도서관</li>
-                    <li>궁금해요</li>
+           <nav id="nav1" class="navi">
+            <div class="inner">
+                <ul>
+
+
+                <ul class="m_left depth1">
+                    <li class="login"><i><img src="img/login.png"></i></li>
+                    <li><a href="#">부산도서관</a>
+                        <ul class="submenu">
+                            <li><a href="#">부산도서관소개</a></li>
+                            <li><a href="sub.html">조직현황</a></li>
+                            <li><a href="sub.html">시설현황</a></li>
+                            <li><a href="sub.html">소장자료현황</a></li>
+
+
+                        </ul>
+                    </li>
+                    <li><a href="#">궁금해요</a>
+                        <ul class="submenu">
+                            <li><a href="sub.html">이용시간</a></li>
+                            <li><a href="#">자료실 소개</a></li>
+                            <li><a href="sub.html">자료찾기</a></li>
+                            <li><a href="sub.html">타도서관자료찾기</a></li>
+                            <li><a href="sub.html">전포북카페</a></li>
+                            <li><a href="sub.html">새로들어온책</a></li>
+                            <li><a href="sub.html">나의도서대출정보</a></li>
+                            <li><a href="sub.html">비치희망자료신청</a></li>
+                            <li><a href="sub.html">비치희망자료결과</a></li>
+
+                        </ul>
+
+                    </li>
+
                 </ul>
-                <li class="logo"><img src="img/sub_logo.png"></li>
-                <ul class="m_right">
-                    <li>함께해요</li>
-                    <li>즐겨요</li>
+                <li class="logo"><a href="index.html"><img src="img/mainlogo.png"></a></li>
+                <ul class="m_right depth1">
+                    <li><a href="#">함께해요</a>
+                        <ul class="submenu">
+                            <li><a href="#">자원봉사신청</a></li>
+                            <li><a href="#">평생학습</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">즐겨요</a>
+                        <ul class="submenu">
+                            <li><a href="#">추천도서</a></li>
+                            <li><a href="#">이달의전시회</a></li>
+                            <li><a href="#">독서동아리</a></li>
+                            <li><a href="sub.html">원북원부산</a></li>
+                        </ul>
+                    </li>
+                    <div class="m_ham"><a href="#"><img src="img/m_ham.png"></a></div>
+                    <nav class="left_gnbWrap">
+                        <a href="#" class="close">close</a>
+                        <ul class="left_gnb">
+                            <li>
+                                <a href="#">menu1</a>
+                                <ul>
+                                    <li><a href="#">sub1</a></li>
+                                    <li><a href="#">sub2</a></li>
+                                    <li><a href="#">sub3</a></li>
+                                    <li><a href="#">sub4</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">menu2</a>
+                                <ul>
+                                    <li><a href="#">sub1</a></li>
+                                    <li><a href="#">sub2</a></li>
+                                    <li><a href="#">sub3</a></li>
+                                    <li><a href="#">sub4</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">menu3</a>
+                                <ul>
+                                    <li><a href="#">sub1</a></li>
+                                    <li><a href="#">sub2</a></li>
+                                    <li><a href="#">sub3</a></li>
+                                    <li><a href="#">sub4</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">menu4</a>
+                                <ul>
+                                    <li><a href="#">sub1</a></li>
+                                    <li><a href="#">sub2</a></li>
+                                    <li><a href="#">sub3</a></li>
+                                    <li><a href="#">sub4</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
                 </ul>
+
             </ul>
+            </div>
+            </nav>
         </header>
        <div class="sub_main">
            
@@ -35,8 +237,16 @@
                
                 <ul>
                     <li>홈</li>
-                    <li>궁금해요</li>
-                    <li>도서대출</li>
+                    <li>
+                        <a href="#">
+                            <span>궁금해요</span>
+                        </a>
+                    </li>
+                    <li>
+                    <a href="#">
+                            <span>도서대출</span>
+                        </a>
+                        </li>
                 </ul>
             <div class="e_m_service">
                 <h3>책이음 서비스란</h3>
@@ -123,7 +333,7 @@
             <p>부산광역시 도서관 책이음서비스에 가입한 후 책이음카드를 제시합니다.</p>
             </div>
             
-            <div class="btn_checkout">회원가입 바로가기</div>
+            <a href="#" class="button button-silver"><span>회원가입 바로가기</span></a>
             </div>
         </div>
         <footer id="footer" class="sub_footer">
@@ -131,7 +341,7 @@
                 <div class="f_top">
                     <ul class="foot_menu">
                         <li>이용약관</li>
-                        <li class="yellow">개인정보처리방침</li>
+                        <li class="yellow"><a href="#">개인정보처리방침</a></li>
                         <li>저작권보호정책</li>
                     </ul>
                     <div class="finder">
@@ -192,4 +402,67 @@
             </div>
         </footer>
     </div>
+    
+    
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+    <script>
+        var j220 = jQuery.noConflict();
+
+    </script>
+
+    <script src="js/slick.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        j220(document).on('ready', function() {
+
+
+            j220(".regular").slick({
+                dots: true,
+                infinite: true,
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                responsive: [ // 반응형 웹 구현 옵션
+                    {
+                        breakpoint: 1279, //화면 사이즈 960px
+                        settings: {
+                            //위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+                            slidesToShow: 2
+                        }
+                    },
+                    {
+                        breakpoint: 680, //화면 사이즈 768px
+                        settings: {
+                            //위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+                            slidesToShow: 1
+                        }
+                    }
+                ]
+            });
+
+            j220(".center").slick({
+                dots: true,
+                infinite: true,
+                centerMode: true,
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                responsive: [ // 반응형 웹 구현 옵션
+                    {
+                        breakpoint: 1279, //화면 사이즈 960px
+                        settings: {
+                            //위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+                            slidesToShow: 2
+                        }
+                    },
+                    {
+                        breakpoint: 680, //화면 사이즈 768px
+                        settings: {
+                            //위에 옵션이 디폴트 , 여기에 추가하면 그걸로 변경
+                            slidesToShow: 1
+                        }
+                    }
+                ]
+
+            });
+        });
+
+    </script>
 </body></html>

@@ -1,0 +1,44 @@
+
+
+
+
+/* Start button effects */
+
+/* Tuturial button*/
+.button {
+	width:570px;
+	height:64px;
+	display:block;
+	background-image:url(../img/downloadbutton.png);
+	background-position: top;
+}
+.button:hover{
+	width:570px; 
+	background-position: bottom;
+	height:64px;
+	background-image:url(../img/downloadbutton.png) no repeat;
+}
+
+/* Tutorial button with jQuery */
+.otherbutton {
+	clear: both;
+	position:relative;
+	display:block;
+	height: 34px;
+	width: 300px;
+	background:url(../img/contact.png) no-repeat;
+    background-size: cover;
+	background-position:0 0;
+	cursor: pointer;
+}	
+.otherbutton span.hover {
+	position: absolute;
+	display: block;
+	height: 34px;
+	width: 300px;
+	background: url(../img/contact.png) no-repeat;
+    background-size: cover;
+	background-position: bottom;
+}
+
+/* Bonus buttons */
